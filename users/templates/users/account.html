@@ -1,0 +1,177 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Main Section -->
+<main class="settingsPage profile my-md">
+  <div class="container">
+    <div class="layout">
+      <div class="column column--1of3">
+        <div class=" text-center">
+          <div class="card__body dev">
+            <img class="avatar avatar--xl" src="{{profile.imageURL}}" />
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-account' %}"><i class="fa fa-edit"></i>Edit</a>
+            <h2 class="dev__name">{{profile.name}}</h2>
+            <p class="dev__title">{{profile.short_into}}</p>
+            <p class="dev__location">Based in {{profile.location}}</p>
+
+            <ul class="dev__social">
+              {% if profile.social_github %}
+              <li>
+                <a title="Github" href="{{profile.social_github}}" target="_blank"><i class="fa fa-github"></i></a>
+              </li>
+              {% endif %}
+
+              {% if profile.social_linkedin %}
+              <li>
+                <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i
+                    class="fa fa-linkedin"></i></a>
+              </li>
+              {% endif %}
+              
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+      <div class="column column--2of3">
+        <div class="devInfo">
+          <h3 class="devInfo__title">About Me</h3>
+          <p class="devInfo__about">{{profile.bio}}</p>
+        </div>
+        <div class="settings">
+          <h3 class="settings__title">Publications</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-publication' %}"><i
+              class="fafa-plus"></i> Add Publication</a>
+        </div>
+
+        <table class="card settings__table">
+          {% for publications in publication %}
+          <tr>
+            <td class="settings__tableInfo">
+              <h4>{{publications.name}}</h4>
+              <p>
+                {{publications.description}}
+              </p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-publication' publications.id %}"><i
+                  class="fa fa-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-publication' publications.id %}?next=/account"><i
+                  class="fa fa-x-mark-circle-o"></i>
+                Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <div class="settings">
+          <h3 class="settings__title">Honers and Awards</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-honersandawards' %}"><i
+              class="fa fa-plus"></i> Add H&A</a>
+        </div>
+
+        <table class="card settings__table">
+          {% for honersandaward in honersandawards %}
+          <tr>
+            <td class="settings__tableInfo">
+              <h4>{{honersandaward.name}}</h4>
+              <p>
+                {{honersandaward.description}}
+              </p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-honersandawards' honersandaward.id %}"><i
+                  class="fa fa-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-honersandawards' honersandaward.id %}?next=/account"><i
+                  class="fa fa-x-mark-circle-o"></i>
+                Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <div class="settings">
+          <h3 class="settings__title">Research Interests</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-research-interests' %}"><i
+              class="fa fa-plus"></i> Add RI</a>
+        </div>
+
+        <table class="card settings__table">
+          {% for research_interest in research_interests %}
+          <tr>
+            <td class="settings__tableInfo">
+              <h4>{{research_interest.name}}</h4>
+              <p>
+                {{research_interest.description}}
+              </p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-research-interests' research_interest.id %}"><i
+                  class="fa fa-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-research-interests' research_interest.id %}?next=/account"><i
+                  class="fa fa-x-mark-circle-o"></i>
+                Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <div class="settings">
+          <h3 class="settings__title">Skills</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}"><i
+              class="fa fa-plus"></i> Add Skill</a>
+        </div>
+
+        <table class="card settings__table">
+          {% for skill in skills %}
+          <tr>
+            <td class="settings__tableInfo">
+              <h4>{{skill.name}}</h4>
+              <p>
+                {{skill.description}}
+              </p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.id %}"><i
+                  class="fa fa-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.id %}?next=/account"><i
+                  class="fa fa-x-mark-circle-o"></i>
+                Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <div class="settings">
+          <h3 class="settings__title">Projects</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i
+              class="fa fa-plus"></i> Add Project</a>
+        </div>
+
+        <table class="card settings__table">
+          {% for project in projects %}
+          <tr>
+            <td class="settings__thumbnail">
+              <a href="{% url 'project' project.id %}"><img src="{{project.imageURL}}" alt="Project Thumbnail" /></a>
+            </td>
+            <td class="settings__tableInfo">
+              <a href="{% url 'project' project.id %}">{{project.title}}</a>
+              <p>{{project.description|slice:"150"}}</p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i
+                  class="fa fa-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn"
+                href="{% url 'delete-project'  project.id %}?next=/account"><i class="fa fa-x-mark-circle-o"></i>
+                Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

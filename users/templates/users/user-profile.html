@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+{% block content %}
+<!-- Main Section -->
+<main class="profile my-md">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <div class=" text-center">
+                    <div class="card__body dev">
+                        <img class="avatar avatar--xl" src="{{ profile.imageURL }}" />
+                        <h2 class="dev__name">{{profile.name}} , {{profile.surname}}</h2>
+                        <p class="dev__title">{{profile.short_intro}}</p>
+                        <p class="dev__location">Based in {{profile.location}}</p>
+                        <ul class="dev__social">
+                            {% if profile.social_github %}
+                            <li>
+                                <a title="Github" href="{{profile.social_github}}" target="_blank"><i class="fa fa-github"></i></a>
+                            </li>
+                            {% endif %}
+
+                            {% if profile.social_linkedin %}
+                            <li>
+                                <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                        {% if request.user.profile.id != profile.id %}
+                        <a href="{% url 'create-message' profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="column column--2of3">
+
+                <div class="devInfo">
+                    <h3 class="devInfo__title">Publications</h3>
+                        {% for publication in publication %}
+                            <h4 class="devSkill__title">{{publication.name}}</h4>
+                            <p class="devSkill__info">{{publication.description}}</p>
+                        {% endfor %}
+                </div>
+
+                <div class="devInfo">
+                    <h3 class="devInfo__title">Honers and Awards</h3>
+                    {% for honersandaward in honersandawards %}
+                        <div class="">
+                            <h4 class="devSkill__title">{{honersandaward.name}}</h4>
+                            <p class="devSkill__info">{{honersandaward.description}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="devInfo">
+                    <h3 class="devInfo__title">Resaerch interests</h3>
+                    <div class="devInfo__skills">
+                        {% for research_interest in research_interests %}
+                        <div class="devSkill">
+                            <h4 class="devSkill__title">{{research_interest.name}}</h4>
+                            <p class="devSkill__info">{{research_interest.description}}</p>
+                        </div>
+                        {% endfor %}
+                        <div class="devInfo__otherSkills">
+                            {% for research_interest in other_research_interests %}
+                            <span class="tag tag--pill tag--sub tag--lg">
+                                <small>{{research_interest}}</small>
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="devInfo">
+                    <h3 class="devInfo__title">Skills</h3>
+                    <div class="devInfo__skills">
+                        {% for skill in topSkills %}
+                        <div class="devSkill">
+                            <h4 class="devSkill__title">{{skill.name}}</h4>
+                            <p class="devSkill__info">{{skill.description}}</p>
+                        </div>
+                        {% endfor %}
+                        <h3 class="devInfo__subtitle">Other Skills</h3>
+                        <div class="devInfo__otherSkills">
+                            {% for skill in otherSkills %}
+                            <span class="tag tag--pill tag--sub tag--lg">
+                                <small>{{skill}}</small>
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

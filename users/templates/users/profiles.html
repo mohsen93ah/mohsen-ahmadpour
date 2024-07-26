@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Section -->
+<main class="profile my-md">
+    <div class="container">
+        <div class="layout">
+            {% for profiles in profiles %}
+            <div class="column column--2of3">
+                <div class="devInfo">
+                    <h3 class="devInfo__title">About Me</h3>
+                    <p class="devInfo__about">{{profiles.bio}}</p>
+                </div>
+            </div>
+            <div class="column column--1of3">
+                <div class="">
+                    <div class="devInfo">
+                        <h3 class="devInfo__subtitle">{{profiles.name}} {{profiles.surname}}</h2>
+                        <img class="" src="{% static 'images/profiles/mypic.JPG' %}" />
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'pagination.html' with queryset=profiles custom_range=custom_range %}
+</main>
+{% endblock content %}

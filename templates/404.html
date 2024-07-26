@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Start 404 Error Area -->
+<main class="inbox my-xl">
+    <div class="content-box">
+        <a class="backButton" href="{% url 'projects' %}"><i class="fa fa-angle-left w3-xlarge"></i></a>
+        <div class="container">
+            <img src="{% static 'images/error.png' %}" alt="404">
+            <h3>خطای 404: صفحه مورد نظر یافت نشد</h3>
+        </div>
+
+    </div>
+</main>
+<!-- End 404 Error Area -->
+{% endblock %}
+
+

@@ -1,0 +1,8 @@
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {.bgimg {background-attachment: scroll;min-height: 400px;}}
+body, html {height: 100%;color: #777;line-height: 1.8;}
+/* Create a Parallax Effect */
+.bgimg { background-attachment: fixed; background-position: center; background-repeat: no-repeat;background-size: cover;}
+.bgimg-1 {background-image: url('/static/images/background/blurspickingneuralnetwork.jpeg');min-height: 100%;}
+.bgimg-2 {background-image: url('/static/images/background/.jpeg');min-height: 100%;}
+.bgimg-3 {background-image: url('/static/images/background/pattern.jpg');min-height: 150%;}
